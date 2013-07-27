@@ -58,17 +58,4 @@
 	$objWriter = new PHPExcel_Writer_Excel2007($objPHPExcel);
 	//或者$objWriter = new PHPExcel_Writer_Excel5($objPHPExcel); 非2007格式
 	$objWriter->save("output/".$_POST["excel_name"].".xlsx");
-
-	//直接输出到浏览器
-	$objWriter = new PHPExcel_Writer_Excel5($objPHPExcel);
-	header("Pragma: public");
-	header("Expires: 0");
-	header("Cache-Control:must-revalidate, post-check=0, pre-check=0");
-	header("Content-Type:application/force-download");
-	header("Content-Type:application/vnd.ms-execl");
-	header("Content-Type:application/octet-stream");
-	header("Content-Type:application/download");;
-	header('Content-Disposition:attachment;filename="'.$_POST["excel_name"].'.xls"');
-	header("Content-Transfer-Encoding:binary");
-	$objWriter->save('php://output');
 ?>
