@@ -68,7 +68,7 @@
 	header("Content-Type:application/vnd.ms-execl");
 	header("Content-Type:application/octet-stream");
 	header("Content-Type:application/download");;
-	header('Content-Disposition:attachment;filename="resume.xls"');
+	header('Content-Disposition:attachment;filename="'.$_POST["excel_name"].'.xls"');
 	header("Content-Transfer-Encoding:binary");
 	$objWriter->save('php://output');
 ?>
