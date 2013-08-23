@@ -91,6 +91,7 @@
 	$objWriter = new PHPExcel_Writer_Excel5($objPHPExcel);
 	//或者$objWriter = new PHPExcel_Writer_Excel5($objPHPExcel); 非2007格式
 	$objWriter->save("output/".$_POST["excel_name"].".xls");
+	// echo dirname(__FILE__);
 	header("Location: "."output/".$_POST["excel_name"].".xls");
 	// $file=$_POST["excel_name"].'.xlsx';
 	// header("Content-Type:application/force-download");
