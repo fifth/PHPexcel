@@ -85,13 +85,13 @@
 			}
 		}
 	}
-	echo $i-1;
+	// echo $i-1;
 
 	// 保存excel—2007格式
 	$objWriter = new PHPExcel_Writer_Excel5($objPHPExcel);
 	//或者$objWriter = new PHPExcel_Writer_Excel5($objPHPExcel); 非2007格式
 	$objWriter->save("output/".$_POST["excel_name"].".xls");
-	header("Location: "."output/".$_POST["excel_name"].".xls")
+	header("Location: "."output/".$_POST["excel_name"].".xls");
 	// $file=$_POST["excel_name"].'.xlsx';
 	// header("Content-Type:application/force-download");
 	// header('Content-Disposition:attachment;filename='.basename($file));
