@@ -6,9 +6,10 @@
 	}
 	$content=json_decode(file_get_contents("input/".$_FILES["json_file"]["name"]),true);
 
-	include 'PHPExcel.php';
-	// include 'PHPExcel/Writer/Excel2007.php';
-	//或者include 'PHPExcel/Writer/Excel5.php'; 用于输出.xls的
+	include 'PHPExcel_1.7.9_doc/Classes/PHPExcel.php';
+	include 'PHPExcel_1.7.9_doc/Classes/PHPExcel/Writer/Excel2007.php';
+	// 或者
+	// include 'PHPExcel_1.7.9_doc/Classes/PHPExcel/Writer/Excel5.php'; //用于输出.xls的
 	// 创建一个excel
 	$objPHPExcel = new PHPExcel();
 
@@ -87,19 +88,26 @@
 	echo $i-1;
 
 	// 保存excel—2007格式
-	// $objWriter = new PHPExcel_Writer_Excel2007($objPHPExcel);
-	//或者$objWriter = new PHPExcel_Writer_Excel5($objPHPExcel); 非2007格式
-	// $objWriter->save("output/".$_POST["excel_name"].".xlsx");
-
 	$objWriter = new PHPExcel_Writer_Excel5($objPHPExcel);
-	header("Pragma: public");
-	header("Expires: 0");
-	header("Cache-Control:must-revalidate, post-check=0, pre-check=0");
-	header("Content-Type:application/force-download");
-	header("Content-Type:application/vnd.ms-execl");
-	header("Content-Type:application/octet-stream");
-	header("Content-Type:application/download");;
-	header('Content-Disposition:attachment;filename="resume.xls"');
-	header("Content-Transfer-Encoding:binary");
-	$objWriter->save('php://output');
+	//或者$objWriter = new PHPExcel_Writer_Excel5($objPHPExcel); 非2007格式
+	$objWriter->save("output/".$_POST["excel_name"].".xls");
+	header("Location: "."output/".$_POST["excel_name"].".xls")
+	// $file=$_POST["excel_name"].'.xlsx';
+	// header("Content-Type:application/force-download");
+	// header('Content-Disposition:attachment;filename='.basename($file));
+	// $objWriter->save('php://output');
+
+
+	// $objWriter = new PHPExcel_Writer_Excel5($objPHPExcel);
+	// header("Pragma: public");
+	// header("Expires: 0");
+	// header("Cache-Control:must-revalidate, post-check=0, pre-check=0");
+	// header("Content-Type:application/force-download");
+	// header("Content-Type:application/vnd.ms-excel");
+	// header("Content-Type:application/octet-stream");
+	// header("Content-Type:application/download");;
+	// header('Content-Disposition:attachment;filename="'.$_POST["excel_name"].'.xls"');
+	// header("Content-Transfer-Encoding:binary");
+	// $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
+	// $objWriter->save('php://output');
 ?>
